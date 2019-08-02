@@ -43,12 +43,11 @@
   <script>
     let clickCount = 0;
     function updateHistoryLength() {
-        clickCount++;
-        setTimeout(()=>{  // 異步執行, 使得 historyLength 能夠及時反映 history.length 變動後的結果
-          document.getElementById("historyLength").innerText = window.history.length;
-          document.getElementById("clickCount").innerText = clickCount;
-        }, 0);
-        
+      clickCount++;
+      setTimeout(()=>{  // 異步執行, 使得 historyLength 能夠及時反映 history.length 變動後的結果
+        document.getElementById("historyLength").innerText = window.history.length;
+        document.getElementById("clickCount").innerText = clickCount;
+      }, 0);
     }
     updateHistoryLength();
   </script>

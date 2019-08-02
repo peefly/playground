@@ -1,0 +1,56 @@
+<html>
+<head>
+  <title>比較透過 onclick 與 透過 href 觸發 javascript function 差異</title>
+  <style>
+    div {
+      margin:10px;
+    }
+    .fakeA {
+      color: #0000ff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .fakeA {
+      color: #0000ff;
+      text-decoration: underline;
+      cursor: pointer;
+      -webkit-user-select: none;
+    }
+    .fakeA:active {
+      color: #ff0000;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <a href="#" onClick="updateHistoryLength()">[a 透過 onclick 觸發]</a>
+  </div>
+  <div>
+    <a href="javascript:updateHistoryLength()">[a 透過 herf 觸發]</a>
+  </div>
+  <div>
+    window.history=<span id="historyLength"></span>
+  </div>
+  <div>
+    <span onClick="updateHistoryLength()">[span 透過 onclick 觸發]</span>
+  </div>
+  <div>
+    <span class="fakeA" onClick="updateHistoryLength()">[裝成連結的 span ]</span>
+  </div>
+  <div>
+    點擊次數=<span id="clickCount"></span>
+  </div>
+  <script>
+    let clickCount = 0;
+    function updateHistoryLength() {
+        clickCount++;
+        setTimeout(()=>{  // 異步執行, 使得 historyLength 能夠及時反映 history.length 變動後的結果
+          document.getElementById("historyLength").innerText = window.history.length;
+          document.getElementById("clickCount").innerText = clickCount;
+        }, 0);
+        
+    }
+    updateHistoryLength();
+  </script>
+</body>
+</html>
